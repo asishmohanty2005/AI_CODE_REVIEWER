@@ -1,0 +1,189 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-background: #05070f;
+  --color-foreground: #f4f4f5;
+  --color-card: #0b0f1a;
+  --color-card-foreground: #f4f4f5;
+  --color-popover: #0f1424;
+  --color-popover-foreground: #f4f4f5;
+  --color-primary: #8b5cf6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #151a2d;
+  --color-secondary-foreground: #e4e4e7;
+  --color-muted: #12172a;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: #06b6d4;
+  --color-accent-foreground: #041016;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: rgba(148, 163, 184, 0.14);
+  --color-input: rgba(148, 163, 184, 0.16);
+  --color-ring: #8b5cf6;
+  --color-success: #22c55e;
+  --color-warning: #f59e0b;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.25rem;
+  --radius-2xl: 1.5rem;
+}
+
+* {
+  border-color: var(--color-border);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(139, 92, 246, 0.18), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(6, 182, 212, 0.12), transparent 50%),
+    radial-gradient(800px 400px at 50% 100%, rgba(99, 102, 241, 0.08), transparent 50%),
+    var(--color-background);
+  color: var(--color-foreground);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.4);
+}
+
+/* Glass utilities */
+.glass {
+  background: rgba(11, 15, 26, 0.65);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.glass-strong {
+  background: rgba(11, 15, 26, 0.82);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(var(--color-card), var(--color-card)) padding-box,
+    linear-gradient(135deg, rgba(139, 92, 246, 0.7), rgba(6, 182, 212, 0.5), rgba(139, 92, 246, 0.2))
+      border-box;
+  border: 1px solid transparent;
+}
+
+.glow-primary {
+  box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.45);
+}
+
+.glow-accent {
+  box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #c4b5fd 0%, #8b5cf6 40%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mesh-bg {
+  background-image:
+    radial-gradient(at 20% 20%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
+    radial-gradient(at 80% 10%, rgba(6, 182, 212, 0.12) 0px, transparent 45%),
+    radial-gradient(at 50% 80%, rgba(99, 102, 241, 0.1) 0px, transparent 50%);
+}
+
+/* Monaco editor dark polish */
+.monaco-editor,
+.monaco-editor-background {
+  border-radius: 0.75rem;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(148, 163, 184, 0.06) 25%,
+    rgba(148, 163, 184, 0.14) 50%,
+    rgba(148, 163, 184, 0.06) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease-in-out infinite;
+  border-radius: 0.5rem;
+}
+
+/* Prose for AI markdown-ish content */
+.prose-ai {
+  line-height: 1.7;
+  color: #cbd5e1;
+}
+.prose-ai h1,
+.prose-ai h2,
+.prose-ai h3 {
+  color: #f1f5f9;
+  margin-top: 1.25em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+}
+.prose-ai pre {
+  background: #0a0e18;
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+.prose-ai code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: rgba(139, 92, 246, 0.12);
+  padding: 0.1em 0.35em;
+  border-radius: 0.3rem;
+}
+.prose-ai pre code {
+  background: transparent;
+  padding: 0;
+}
+.prose-ai ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prose-ai ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.prose-ai a {
+  color: #a78bfa;
+  text-decoration: underline;
+}

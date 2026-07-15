@@ -1,0 +1,31 @@
+# Optional local stack: API + Postgres
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: codelens
+      POSTGRES_PASSWORD: codelens
+      POSTGRES_DB: codelens
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://codelens:codelens@db:5432/codelens
+      SECRET_KEY: local-dev-secret-change-me-please-32chars
+      CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      DEFAULT_AI_PROVIDER: gemini
+      APP_ENV: development
+      DEBUG: "true"
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
